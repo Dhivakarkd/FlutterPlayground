@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-main() => runApp(
-      const Directionality(
-        textDirection: TextDirection.ltr,
-        child: Center(
-          child: Text('Hello, World!'),
-        ),
-      ),
-    );
+import 'package:flutter_playground/AnimatedContainerApp.dart';
+
+main() => runApp(const AnimatedContainerApp());
