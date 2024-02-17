@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_playground/AnimatedContainerApp.dart';
 import 'package:flutter_playground/FilePickerDemo.dart';
-import 'package:flutter_playground/PickerDemoApp.dart';
+import 'package:flutter_playground/RandomTextApp.dart';
 
-main() => runApp(FilePickerDemo());
+main() => runApp(RandomTextApp());
