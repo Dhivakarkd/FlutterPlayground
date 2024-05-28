@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://example.com/path/to/your/app_icon.png" width="200" alt="Piano Helper Logo">
+  <img src="https://github.com/Dhivakarkd/FlutterPlayground/assets/46301457/b0f4d749-6ed3-4087-a01a-5f5b9ef20435" width="200" alt="Piano Helper Logo">
 </div>
 
 # 🎹 Piano Helper
