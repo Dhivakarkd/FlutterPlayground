@@ -35,7 +35,7 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
   }
 
   void _startTimers() {
-    _characterTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _characterTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         _elapsedSeconds++;
         if (_elapsedSeconds >= _timerSeconds) {
@@ -72,47 +72,99 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Random Character Timer'),
-      ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              _currentCharacter,
-              style: const TextStyle(
-                fontSize: 300,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Elapsed Time: $_elapsedSeconds s',
-              style: const TextStyle(
-                fontSize: 24,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Timer Interval: $_timerSeconds s',
-              style: const TextStyle(
-                fontSize: 24,
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _resetTimer,
-              child: const Text('Reset Timer'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _increaseTimerDuration,
-              child: const Text('Increase Timer by 5s'),
-            ),
-          ],
-        ),
+        child: orientation == Orientation.portrait
+            ? _buildPortraitLayout()
+            : _buildLandscapeLayout(),
       ),
+    );
+  }
+
+  Widget _buildPortraitLayout() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          _currentCharacter,
+          style: TextStyle(
+            fontSize: 200,
+          ),
+        ),
+        SizedBox(height: 20),
+        Text(
+          'Elapsed Time: $_elapsedSeconds s',
+          style: TextStyle(
+            fontSize: 24,
+          ),
+        ),
+        SizedBox(height: 20),
+        Text(
+          'Timer Interval: $_timerSeconds s',
+          style: TextStyle(
+            fontSize: 24,
+          ),
+        ),
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: _resetTimer,
+          child: Text('Reset Timer'),
+        ),
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: _increaseTimerDuration,
+          child: Text('Increase Timer by 5s'),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLandscapeLayout() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Center(
+            child: Text(
+              _currentCharacter,
+              style: TextStyle(
+                fontSize: 200,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Elapsed Time: $_elapsedSeconds s',
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Timer Interval: $_timerSeconds s',
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _resetTimer,
+                child: Text('Reset Timer'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _increaseTimerDuration,
+                child: Text('Increase Timer by 5s'),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
