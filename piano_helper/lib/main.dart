@@ -35,7 +35,7 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
   }
 
   void _startTimers() {
-    _characterTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _characterTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _elapsedSeconds++;
         if (_elapsedSeconds >= _timerSeconds) {
@@ -74,7 +74,7 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Random Character Timer'),
+        title: const Text('Random Character Timer'),
       ),
       body: Center(
         child: Column(
@@ -82,33 +82,33 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
           children: [
             Text(
               _currentCharacter,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 300,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Elapsed Time: $_elapsedSeconds s',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Timer Interval: $_timerSeconds s',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _resetTimer,
-              child: Text('Reset Timer'),
+              child: const Text('Reset Timer'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _increaseTimerDuration,
-              child: Text('Increase Timer by 5s'),
+              child: const Text('Increase Timer by 5s'),
             ),
           ],
         ),
