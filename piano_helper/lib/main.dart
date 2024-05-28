@@ -87,60 +87,12 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
     );
   }
 
-Widget _buildPortraitLayout() {
-  return Column(
-    children: [
-      Expanded(
-        child: Image.asset('assets/images/piano_key_chart.png'),
-      ),
-      Expanded(
-        child: Center(
-          child: Text(
-            _currentCharacter,
-            style: const TextStyle(
-              fontSize: 200,
-            ),
-          ),
-        ),
-      ),
-      Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Elapsed Time: $_elapsedSeconds s',
-              style: const TextStyle(
-                fontSize: 24,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Timer Interval: $_timerSeconds s',
-              style: const TextStyle(
-                fontSize: 24,
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _resetTimer,
-              child: const Text('Reset Timer'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _increaseTimerDuration,
-              child: const Text('Increase Timer by 5s'),
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
-}
-
-  Widget _buildLandscapeLayout() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+  Widget _buildPortraitLayout() {
+    return Column(
       children: [
+        Expanded(
+          child: Image.asset('assets/images/piano_key_chart.png'),
+        ),
         Expanded(
           child: Center(
             child: Text(
@@ -177,6 +129,80 @@ Widget _buildPortraitLayout() {
               ElevatedButton(
                 onPressed: _increaseTimerDuration,
                 child: const Text('Increase Timer by 5s'),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLandscapeLayout() {
+    return Row(
+      crossAxisAlignment:
+          CrossAxisAlignment.start, // Align everything to the top
+      children: [
+        Expanded(
+          child: Center(
+            child: Image.asset('assets/images/piano_key_chart.png'),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Center(
+                  child: Text(
+                    _currentCharacter,
+                    style: const TextStyle(
+                      fontSize: 200,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            'Elapsed Time: $_elapsedSeconds s',
+                            style: const TextStyle(
+                              fontSize: 24,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Timer Interval: $_timerSeconds s',
+                            style: const TextStyle(
+                              fontSize: 24,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                        ],
+                      ),
+                    ),
+                    Center(
+                      // Center the buttons
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: _resetTimer,
+                            child: const Text('Reset Timer'),
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: _increaseTimerDuration,
+                            child: const Text('Increase Timer by 5s'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
