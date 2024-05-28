@@ -1,16 +1,32 @@
-# piano_helper
+<div align="center">
+  <img src="https://example.com/path/to/your/app_icon.png" width="200" alt="Piano Helper Logo">
+</div>
 
-A new Flutter project.
+# 🎹 Piano Helper
 
-## Getting Started
+Piano Helper is a Flutter app designed to assist piano learners with various tools and features.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+🎵 Random Character Display: Displays random piano characters to help you memorize piano keys.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+⏱️ Timer Functionality: Includes a timer to track practice sessions.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🔧 Customization Options: Customize the app to suit your preferences.
+
+## Installation
+
+To use Piano Helper, follow these steps:
+
+1. Clone this repository to your local machine.
+2. Ensure you have Flutter installed. If not, follow the [Flutter installation guide](https://flutter.dev/docs/get-started/install).
+3. Run `flutter pub get` to install dependencies.
+4. Run the app using `flutter run`.
+
+## Contributing
+
+Contributions are welcome! Please read our [contribution guidelines](CONTRIBUTING.md) to get started.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.piano_helper">
    <application
-        android:label="piano_helper"
+        android:label="Piano Helper"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
