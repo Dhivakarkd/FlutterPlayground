@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
+import 'package:wakelock/wakelock.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,10 +33,12 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
     super.initState();
     _currentCharacter = _getRandomCharacter();
     _startTimers();
+    // Acquire the wake lock when the screen starts
+    Wakelock.enable();
   }
 
   void _startTimers() {
-    _characterTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _characterTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _elapsedSeconds++;
         if (_elapsedSeconds >= _timerSeconds) {
@@ -67,6 +70,8 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
   @override
   void dispose() {
     _characterTimer.cancel();
+    // Release the wake lock when the screen is disposed
+    Wakelock.disable();
     super.dispose();
   }
 
@@ -82,43 +87,55 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
     );
   }
 
-  Widget _buildPortraitLayout() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          _currentCharacter,
-          style: TextStyle(
-            fontSize: 200,
+Widget _buildPortraitLayout() {
+  return Column(
+    children: [
+      Expanded(
+        child: Image.asset('assets/images/piano_key_chart.png'),
+      ),
+      Expanded(
+        child: Center(
+          child: Text(
+            _currentCharacter,
+            style: const TextStyle(
+              fontSize: 200,
+            ),
           ),
         ),
-        SizedBox(height: 20),
-        Text(
-          'Elapsed Time: $_elapsedSeconds s',
-          style: TextStyle(
-            fontSize: 24,
-          ),
+      ),
+      Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Elapsed Time: $_elapsedSeconds s',
+              style: const TextStyle(
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Timer Interval: $_timerSeconds s',
+              style: const TextStyle(
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _resetTimer,
+              child: const Text('Reset Timer'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _increaseTimerDuration,
+              child: const Text('Increase Timer by 5s'),
+            ),
+          ],
         ),
-        SizedBox(height: 20),
-        Text(
-          'Timer Interval: $_timerSeconds s',
-          style: TextStyle(
-            fontSize: 24,
-          ),
-        ),
-        SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: _resetTimer,
-          child: Text('Reset Timer'),
-        ),
-        SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: _increaseTimerDuration,
-          child: Text('Increase Timer by 5s'),
-        ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
+}
 
   Widget _buildLandscapeLayout() {
     return Row(
@@ -128,7 +145,7 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
           child: Center(
             child: Text(
               _currentCharacter,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 200,
               ),
             ),
@@ -140,26 +157,26 @@ class _RandomCharacterScreenState extends State<RandomCharacterScreen> {
             children: [
               Text(
                 'Elapsed Time: $_elapsedSeconds s',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Timer Interval: $_timerSeconds s',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _resetTimer,
-                child: Text('Reset Timer'),
+                child: const Text('Reset Timer'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _increaseTimerDuration,
-                child: Text('Increase Timer by 5s'),
+                child: const Text('Increase Timer by 5s'),
               ),
             ],
           ),
